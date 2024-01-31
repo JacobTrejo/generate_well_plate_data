@@ -1,0 +1,14 @@
+# configuration file for variables used in the program
+shouldAddPatchyNoise: False
+
+
+average_radius: 37
+max_radius_offset: 5
+
+average_side_padding: 15
+max_side_padding_offset: 5
+
+minimum_distance_from_bottom_circle: 2
+max_additional_distance_from_bottom_circle: 10
+
+maximum_distance_from_edge: 10
