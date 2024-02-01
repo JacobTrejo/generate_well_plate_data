@@ -775,6 +775,10 @@ def f_x_to_model_bigger(x, seglen, randomize, imageSizeX = 648, imageSizeY = 488
         bCanvas[ canvas_b_indices[0]: canvas_b_indices[1] + 1, canvas_b_indices[2]: canvas_b_indices[3] + 1] = \
             graymodel[gray_b_indices[0]: gray_b_indices[1] + 1, gray_b_indices[2]: gray_b_indices[3] + 1]
 
+    # Normalizing
+    bCanvas *= 1 / np.max(bCanvas)
+    bCanvas *= 255
+
     bCanvas = bCanvas.astype(np.uint8)
 
     return bCanvas, pt

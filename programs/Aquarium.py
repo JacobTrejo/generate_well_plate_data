@@ -137,11 +137,13 @@ class Aquarium:
         if Config.shouldBlurr: self.smallCanvas = add_blur(self.smallCanvas)
 
     def addNoise(self):
-        self.smallCanvas = add_background_noise(self.smallCanvas)
-        # self.smallCanvas = add_background_noise_flipped(self.smallCanvas)
+        # self.smallCanvas = add_background_noise(self.smallCanvas)
+        self.smallCanvas = add_background_noise_flipped(self.smallCanvas)
         # NOTE: might want to add some patches to frames without a fish
         if len(self.fishList) != 0:
             self.smallCanvas = add_patchy_noise(self.smallCanvas, self.fishList[0])
+        # Turning it back into np.uint8 after adding the noise
+        self.smallCanvas = self.smallCanvas.astype(np.uint8)
    
     def addNoiseBackgroundBlurred(self):
         background = add_background_noise_flipped(np.zeros( self.smallCanvas.shape) )

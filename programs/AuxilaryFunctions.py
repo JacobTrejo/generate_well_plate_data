@@ -463,7 +463,9 @@ def add_patchy_noise(im, fish):
             # gray_b = imnoise(gray_b, 'localvar', var_mat * 3 * (np.random.rand() * 60 + 20) / 255 ** 2)
             im = random_noise(im, mode='localvar', local_vars=(finalVar_mat * 3 * (
                     np.random.rand() * 60 + 20) / 255 ** 2) + .00000000000000001)
-            im = im * (maxG / max(im.flatten()))
+            # im = im * (maxG / max(im.flatten()))
+            # np.clip(im, 0, 1)
+            im = im * (255 / max(im.flatten()))
 
     return im
 

@@ -35,15 +35,17 @@ def create_and_save_data(frame_idx):
 def init_pool_process():
     np.random.seed()
 
-if __name__ == '__main__':
-    # multiprocessing case
-    print('Process Starting')
-    startTime = time.time()
-    amount = 1
-    pool_obj = multiprocessing.Pool(initializer=init_pool_process)
-    pool_obj.map(create_and_save_data, range(0,amount))
-    pool_obj.close()
-    endTime = time.time()
+create_and_save_data(0)
 
-    print('Finish Running')
-    print('Average Time: ' + str((endTime - startTime)/amount))
+# if __name__ == '__main__':
+#     # multiprocessing case
+#     print('Process Starting')
+#     startTime = time.time()
+#     amount = 1
+#     pool_obj = multiprocessing.Pool(initializer=init_pool_process)
+#     pool_obj.map(create_and_save_data, range(0,amount))
+#     pool_obj.close()
+#     endTime = time.time()
+#
+#     print('Finish Running')
+#     print('Average Time: ' + str((endTime - startTime)/amount))
