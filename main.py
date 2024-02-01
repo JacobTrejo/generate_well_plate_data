@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # multiprocessing case
     print('Process Starting')
     startTime = time.time()
-    amount = 500000
+    amount = 1
     pool_obj = multiprocessing.Pool(initializer=init_pool_process)
     pool_obj.map(create_and_save_data, range(0,amount))
     pool_obj.close()

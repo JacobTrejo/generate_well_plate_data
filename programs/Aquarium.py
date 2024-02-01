@@ -138,7 +138,7 @@ class Aquarium:
 
     def addNoise(self):
         self.smallCanvas = add_background_noise(self.smallCanvas)
-        self.smallCanvas = add_background_noise_flipped(self.smallCanvas)
+        # self.smallCanvas = add_background_noise_flipped(self.smallCanvas)
         # NOTE: might want to add some patches to frames without a fish
         if len(self.fishList) != 0:
             self.smallCanvas = add_patchy_noise(self.smallCanvas, self.fishList[0])
@@ -199,8 +199,8 @@ class Aquarium:
 
         self.addArtifactsOrDistortions()
 
-        #self.addNoise()
-        self.addNoiseBackgroundBlurred()
+        self.addNoise()
+        # self.addNoiseBackgroundBlurred()
         
         # self.smallCanvas = np.stack([self.smallCanvas for _ in range(3)], axis=2)
         # pts = self.fishList[0].pts
