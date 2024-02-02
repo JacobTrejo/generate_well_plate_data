@@ -1,69 +1,19 @@
-# A file which stores the functions to define the intrinsic parameters
+# Yaml file which controls the intrinsic parameters of the fish
+# NOTE: if you change a distribution make sure you also import the library in IntrinsicParameters.py
 
-#belly_br_mu : 0.405766627860074
-#belly_br_std : 0.08510657640471547
-belly_br_arguments: 0.405766627860074, 0.08510657640471547
-
-#belly_l_mu : 1.0414934216489478
-#belly_l_std : 0.0497660715368968
-belly_l_arguments: 1.0414934216489478, 0.0497660715368968
-belly_l_function: np.random.normal
-
-#belly_w_mu : 0.4509085008872612
-#belly_w_std : 0.04318248156070455
-belly_w_arguments: 0.4509085008872612, 0.04318248156070455
-belly_w_function: np.random.normal
-
-#c_belly_mu : 0.8976990388969368
-#c_belly_std : 0.046408648027029396
-c_belly_arguments: 0.8976990388969368, 0.046408648027029396
-c_belly_function: np.random.normal
-
-#c_eye_mu : 1.7175761389389386
-#c_eye_std : 0.20589859105033523
-c_eye_arguments: 1.7175761389389386, 0.20589859105033523
-c_eye_function: np.random.normal
-
-#c_head_ae : 13.160772264490056
-#c_head_loce : 0.9469252531374381
-#c_head_scalee : 0.3251749094426817
-c_head_arguments: 13.160772264490056, 0.9469252531374381, 0.3251749094426817
-c_head_function: skewnorm.rvs
-
-#d_eye_mu : 1.144396567090266
-#d_eye_std : 0.04442945643226941
-d_eye_arguments: 1.144396567090266, 0.04442945643226941
-d_eye_function: np.random.normal
-
-#eye_br_ae : -8.231518385739356
-#eye_br_loce : 0.6969923960604942
-#eye_br_scalee : 0.1853606969178898
-eye_br_arguments: -8.231518385739356, 0.6969923960604942, 0.1853606969178898
-
-#eye_l_mu : 0.5122961600634638
-#eye_l_std : 0.07434852108369809
-eye_l_arguments: 0.5122961600634638, 0.07434852108369809
-eye_l_function: np.random.normal
-
-#eye_w_mu : 0.4209238403150402
-#eye_w_std : 0.040920763968052117
-eye_w_arguments: 0.4209238403150402, 0.040920763968052117
-eye_w_function: np.random.normal
-
-#head_br_mu : 0.27670705295942777
-#head_br_std : 0.05571972183069393
-head_br_arguments: 0.27670705295942777, 0.05571972183069393
-
-#head_l_mu : 0.7889611717422198
-#head_l_std : 0.10205659701587598
-head_l_arguments:  0.7889611717422198, 0.10205659701587598
-head_l_function: np.random.normal
-
-#head_w_mu : 0.5077558460625518
-#head_w_std : 0.032475097562161506
-head_w_arguments: 0.5077558460625518, 0.032475097562161506
-head_w_function: np.random.normal
-
+belly_br_distribution: np.random.normal(0.405766627860074, 0.08510657640471547) * 400
+belly_l_distribution: np.random.normal(1.0414934216489478, 0.0497660715368968)
+belly_w_distribution: np.random.normal(0.4509085008872612, 0.04318248156070455)
+c_belly_distribution: np.random.normal(0.8976990388969368, 0.046408648027029396)
+c_eye_distribution: np.random.normal(1.7175761389389386, 0.20589859105033523)
+c_head_distribution: skewnorm.rvs(13.160772264490056, 0.9469252531374381, 0.3251749094426817)
+d_eye_distribution: np.random.normal(1.144396567090266, 0.04442945643226941)
+eye_br_distribution: skewnorm.rvs(-8.231518385739356, 0.6969923960604942, 0.1853606969178898) * 400
+eye_l_distribution: np.random.normal(0.5122961600634638, 0.07434852108369809)
+eye_w_distribution: np.random.normal(0.4209238403150402, 0.040920763968052117)
+head_br_distribution: np.random.normal(0.27670705295942777, 0.05571972183069393) * 400
+head_l_distribution: np.random.normal(0.7889611717422198, 0.10205659701587598)
+head_w_distribution: np.random.normal(0.5077558460625518, 0.032475097562161506)
 
 
 

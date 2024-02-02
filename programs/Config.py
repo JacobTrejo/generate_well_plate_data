@@ -11,7 +11,7 @@ class Config:
     dataDirectory = 'data'
 
     averageSizeOfFish = 70
-    randomizeFish = 0
+    randomizeFish = 1
 
     average_radius = 80
     max_radius_offset = 10

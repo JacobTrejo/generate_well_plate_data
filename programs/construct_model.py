@@ -11,8 +11,7 @@ import time
 import pdb
 from scipy.stats import skewnorm
 
-from programs.InstrinsicParameters import IntrinsicParameters
-
+from programs.IntrinsicParameters import IntrinsicParameters
 # Setting up the models for the intrinsic parameters
 intrinsic_parameters_folder = 'inputs/intrinsic_parameters/'
 
@@ -155,26 +154,21 @@ def draw_anterior_b(seglen, theta, gamma, phi, dh1, dh2, dimension, size_lut, ra
     
     # Distance between eyes
     # d_eye = seglen * (randomize * normrnd(1, 0.05) + (1 - randomize))
-    # d_eye = seglen * 1.18
     # d_eye = seglen * np.random.normal(d_eye_mu, d_eye_std)
-    d_eye = seglen * IntrinsicParameters.d_eye_function_call()
+    d_eye = seglen * IntrinsicParameters.d_eye_distribution()
 
     # Relative position of eyes, belly and head on the ball and stick model
     # c_eyes = 1.9 * (randomize * normrnd(1, 0.05) + (1 - randomize))
-    # c_eyes = 1.8
     # c_eyes = np.random.normal(c_eye_mu, c_eye_std)
-    c_eyes = IntrinsicParameters.c_eye_function_call()
+    c_eyes = IntrinsicParameters.c_eye_distribution()
 
     # c_belly = 0.98 * (randomize * normrnd(1, 0.05) + (1 - randomize))
-    # c_belly = .9
     # c_belly = np.random.normal(c_belly_mu, c_belly_std)
-    c_belly = IntrinsicParameters.c_belly_function_call()
+    c_belly = IntrinsicParameters.c_belly_distribution()
 
     # c_head = 1.04 * (randomize * normrnd(1, 0.05) + (1 - randomize))
-    # c_head = 1.2
     # c_head = skewnorm.rvs(c_head_ae, c_head_loce, c_head_scalee)
-    c_head = IntrinsicParameters.c_head_function_call()
-
+    c_head = IntrinsicParameters.c_head_distribution()
     canvas = np.zeros((XX, YY, ZZ))
     
     # Rotation matrix
@@ -213,13 +207,13 @@ def draw_anterior_b(seglen, theta, gamma, phi, dh1, dh2, dimension, size_lut, ra
     head_c = np.matmul(R, head_c) + pt_original[:, 1, None]
     # Set brightness of eyes, belly and head
     # eyes_br = 235 * (randomize * normrnd(1, 0.1) + (1 - randomize) )
-    eyes_br = IntrinsicParameters.eye_br_function_call() * 1e3 * randomize + (1 -randomize) * 235
+    eyes_br = IntrinsicParameters.eye_br_distribution() * randomize + (1 - randomize) * 235
     # eyes_br = 255 * .55
     # belly_br = eyes_br * 0.83 * (randomize * normrnd(1, 0.1) + (1 - randomize))
-    belly_br = IntrinsicParameters.belly_br_function_call() * 1e3 * randomize + (1 - randomize) * .83 * eyes_br
+    belly_br = IntrinsicParameters.belly_br_distribution() * randomize + (1 - randomize) * .83 * eyes_br
     # belly_br = 255 * .42
     # head_br = belly_br * 0.64 * (randomize * normrnd(1, 0.1) + (1 - randomize))
-    head_br = IntrinsicParameters.head_br_function_call() * 1e3 * randomize + (1 - randomize) * .64 * belly_br
+    head_br = IntrinsicParameters.head_br_distribution() * randomize + (1 - randomize) * .64 * belly_br
 
     # head_br = 255 * .28
     # Generate random variables for scaling sizes of eyes, head and belly
@@ -233,31 +227,25 @@ def draw_anterior_b(seglen, theta, gamma, phi, dh1, dh2, dimension, size_lut, ra
     
     # Set size of eyes, belly and head
     # eye_w = seglen * 0.22 * rand1_eye
-    # eye_w = seglen * .4
     # eye_w = seglen * np.random.normal(eye_w_mu, eye_w_std)
-    eye_w = seglen * IntrinsicParameters.eye_w_function_call()
+    eye_w = seglen * IntrinsicParameters.eye_w_distribution()
     # eye_l = seglen * 0.35 * rand2_eye
-    # eye_l = seglen * .5
     # eye_l = seglen * np.random.normal(eye_l_mu, eye_l_std)
-    eye_l = seglen * IntrinsicParameters.eye_l_function_call()
+    eye_l = seglen * IntrinsicParameters.eye_l_distribution()
     eye_h = seglen * 0.3
     # belly_w = seglen * 0.29 * rand1_belly
-    # belly_w = seglen * .45
     # belly_w = seglen * np.random.normal(belly_w_mu, belly_w_std)
-    belly_w = seglen * IntrinsicParameters.belly_w_function_call()
+    belly_w = seglen * IntrinsicParameters.belly_w_distribution()
     # belly_l = seglen * 0.86 * rand2_belly
-    # belly_l = seglen * 1.05
     # belly_l = seglen * np.random.normal(belly_l_mu, belly_l_std)
-    belly_l = seglen * IntrinsicParameters.belly_l_function_call()
+    belly_l = seglen * IntrinsicParameters.belly_l_distribution()
     belly_h = seglen * 0.34
     # head_w = seglen * 0.3 * rand1_head
-    # head_w = seglen * .5
     # head_w = seglen * np.random.normal(head_w_mu, head_w_std)
-    head_w = seglen * IntrinsicParameters.head_w_function_call()
+    head_w = seglen * IntrinsicParameters.head_w_distribution()
     # head_l = seglen * 0.86 * rand2_head
-    # head_l = seglen * .8
     # head_l = seglen * np.random.normal(head_l_mu, head_l_std)
-    head_l = seglen * IntrinsicParameters.head_l_function_call()
+    head_l = seglen * IntrinsicParameters.head_l_distribution()
     head_h = seglen * 0.53
 
     # Construct 3-D models of eyes, belly and head
