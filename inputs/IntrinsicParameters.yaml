@@ -14,6 +14,6 @@ eye_w_distribution: np.random.normal(0.4209238403150402, 0.040920763968052117)
 head_br_distribution: np.random.normal(0.27670705295942777, 0.05571972183069393) * 400
 head_l_distribution: np.random.normal(0.7889611717422198, 0.10205659701587598)
 head_w_distribution: np.random.normal(0.5077558460625518, 0.032475097562161506)
-
+seglen_distribution: 2 + np.random.rand()
 
 

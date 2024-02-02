@@ -29,7 +29,7 @@ class IntrinsicParameters:
     head_br_distribution = lambda: np.random.normal(0.27670705295942777, 0.05571972183069393) * 400
     head_l_distribution = lambda: np.random.normal(0.7889611717422198, 0.10205659701587598)
     head_w_distribution = lambda: np.random.normal(0.5077558460625518, 0.032475097562161506)
-
+    seglen_distribution = lambda: 2 + np.random.rand()
 
     def __init__(self, pathToYamlFile):
 

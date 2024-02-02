@@ -1,3 +1,4 @@
+from programs.IntrinsicParameters import IntrinsicParameters
 import numpy as np
 from skimage import draw
 import cv2 as cv
@@ -95,9 +96,11 @@ def generate_a_fish_in_circle(circle, distance_from_edge = None, return_angle = 
         xVect = np.zeros((11))
         fishlen = (np.random.rand(1) - 0.5) * 30 + 70
         idxlen = np.floor((fishlen - 62) / 1.05) + 1
-        seglen = 5.6 + idxlen * 0.1
-        seglen = seglen[0]
-        seglen = 2 + np.random.rand()
+        # seglen = 5.6 + idxlen * 0.1
+        #
+        # seglen = seglen[0]
+        # seglen = 2 + np.random.rand()
+        seglen = IntrinsicParameters.seglen_distribution()
         # seglen = 7.1
 
         # Changing the distribution where the center can be to reduce looping
