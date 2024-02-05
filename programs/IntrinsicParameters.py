@@ -59,6 +59,9 @@ class IntrinsicParameters:
     head_l_u = lambda: 0.7889611717422198
     head_w_distribution = lambda: np.random.normal(0.5077558460625518, 0.032475097562161506)
     head_w_u = lambda: 0.5077558460625518
+    ball_thickness_distribution = lambda: np.random.normal(0.5861518680474747, 0.12086267623463233)
+    ball_thickness_u = lambda: 0.5861518680474747
+
     seglen_distribution = lambda: 2 + np.random.rand()
     seglen_u = lambda: 2.5
 
@@ -92,6 +95,7 @@ class IntrinsicParameters:
 
 # IntrinsicParameters('inputs/IntrinsicParameters.yaml')
 IntrinsicParameters('inputs/IntrinsicParameters.yaml')
+
 # print(IntrinsicParameters.c_head_distribution())
 
 # l = []

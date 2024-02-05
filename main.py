@@ -34,8 +34,8 @@ def create_and_save_data(frame_idx):
 
 def init_pool_process():
     np.random.seed()
-
-create_and_save_data(0)
+for idx in range(10):
+    create_and_save_data(idx)
 
 # if __name__ == '__main__':
 #     # multiprocessing case

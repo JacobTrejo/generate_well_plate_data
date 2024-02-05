@@ -11,7 +11,7 @@ class Config:
     dataDirectory = 'data'
 
     averageSizeOfFish = 70
-    randomizeFish = 0
+    randomizeFish = 1
 
     average_radius = 80
     max_radius_offset = 10
@@ -49,6 +49,10 @@ class Config:
 
     averageAmountOfPatchyNoise = .2
 
+    # Variables for the background noise
+    gaussianNoiseLoc = 50
+    gaussianNoiseScale = 10
+
 
     amountOfData = 50000
     fractionForTraining = .9
@@ -76,6 +80,8 @@ class Config:
     # Noise Variables
     maxAmountOfPatchableFish = 9
 
+    chance_to_erase_around_well = .15
+
     # Flags
     shouldAddPatchyNoise = True
     shouldAddStaticNoise = True
@@ -86,6 +92,7 @@ class Config:
     shouldResize = False
     shouldBlurr = False
     shouldDrawCircles = False
+    shouldEraseAroundWell = True
 
     # None for now since it is going to get set after checking the yaml file
     biggestIdx4TrainingData = None

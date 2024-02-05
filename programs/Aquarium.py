@@ -132,15 +132,19 @@ class Aquarium:
             self.fishList[0] = tempFish
 
     def addArtifactsOrDistortions(self):
+        if Config.shouldEraseAroundWell and np.random.rand() < Config.chance_to_erase_around_well: self.erazeAroundWell()
         if Config.shouldResize: self.resize()
         self.randomly_crop()
         if Config.shouldBlurr: self.smallCanvas = add_blur(self.smallCanvas)
 
+    def erazeAroundWell(self):
+        self.smallCanvas = \
+            cv.circle(self.smallCanvas, (int(self.circle.centerX), int(self.circle.centerY)), self.circle.radius,(0), 10 )
     def addNoise(self):
         # self.smallCanvas = add_background_noise(self.smallCanvas)
         self.smallCanvas = add_background_noise_flipped(self.smallCanvas)
         # NOTE: might want to add some patches to frames without a fish
-        if len(self.fishList) != 0:
+        if len(self.fishList) != 0 and Config.shouldAddPatchyNoise:
             self.smallCanvas = add_patchy_noise(self.smallCanvas, self.fishList[0])
         # Turning it back into np.uint8 after adding the noise
         self.smallCanvas = self.smallCanvas.astype(np.uint8)
@@ -290,7 +294,6 @@ class Fish:
 
         # if we decided to put the fish near the edge then that was because we want a reflection
         if self.should_put_fish_near_edge: yesOrNo = True
-
         return yesOrNo
 
     def drawReflection(self):

@@ -276,11 +276,12 @@ def gen_lut_b_tail(n, seglen, d1, d2, t, randomize):
 
     # Size of the balls in the ball and stick model
     random_number_size = randomize * normrnd(0.5, 0.1) + (1 - randomize) * 0.5
+    random_number_size *= (randomize * IntrinsicParameters.ball_thickness_distribution() + (1 - randomize) * IntrinsicParameters.ball_thickness_u())
     ballsize = random_number_size * np.array([3, 2, 2, 2, 2, 1.5, 1.2, 1.2, 1])
-    ballsize *= .5
+    # ballsize *= .5
     # Thickness of the sticks in the model
     thickness = random_number_size * np.array([7, 6, 5.5, 5, 4.5, 4, 3.5, 3])
-    thickness *= .5
+    # thickness *= .5
     # Brightness of the tail
     b_tail = np.array([0.7, 0.55, 0.45, 0.40, 0.32, 0.28, 0.20, 0.15]) / 1.5
 
@@ -689,7 +690,7 @@ def f_x_to_model_centered(x, seglen, randomize):
         bodypix = np.maximum(bodypix, tailpix)
 
     # Combine headpix and tailpix into a single image
-    graymodel = np.maximum(headpix, normrnd(1, 0.1) * bodypix)
+    graymodel = np.maximum(headpix, (normrnd(1, 0.1) * randomize + (1 - randomize)) * bodypix)
     return graymodel, pt, new_origin
 
 def f_x_to_model_bigger(x, seglen, randomize, imageSizeX = 648, imageSizeY = 488):

@@ -383,12 +383,13 @@ def add_background_noise_flipped(im):
         im /= 255
     else:
         im[0, 0] = 1
-    im = imGaussNoiseClipped(im, (np.random.rand() * np.random.normal(50, 10)) / 255,
-                      (np.random.rand() * 50 + 20) / 255 ** 2)
+
+    im = imGaussNoiseClipped(im, (np.random.rand() * np.random.normal(Config.gaussianNoiseLoc , Config.gaussianNoiseScale)) / 255,
+                      (np.random.rand() * Config.gaussianNoiseLoc + 2 * Config.gaussianNoiseScale) / 255 ** 2)
     # Converting Back
     if maxGray != 0:
-        # im = im * (255 / max(im.flatten()))
-        im *= 255
+        im = im * (255 / max(im.flatten()))
+        # im *= 255
         # im *= maxGray
     else:
         im[0, 0] = 0
