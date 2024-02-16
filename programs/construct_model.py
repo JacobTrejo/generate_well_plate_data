@@ -47,21 +47,15 @@ def rotx(angle):
     M = np.array([[1, 0, 0],  [0, np.cos(angle), -np.sin(angle)],  [0, np.sin(angle), np.cos(angle)]])
     return M
 
-
-
 # Rotate along y axis. Angles are accepted in radians
 def roty(angle):
     M = np.array([[np.cos(angle), 0, np.sin(angle)],  [0, 1, 0],  [-np.sin(angle), 0, np.cos(angle)]])
     return M
 
-
-
 # Rotate along z axis. Angles are accepted in radians
 def rotz(angle):
     M = np.array([[np.cos(angle), -np.sin(angle), 0],  [np.sin(angle), np.cos(angle), 0],  [0, 0, 1]])
     return M
-
-
 
 # Sigmoid function
 def sigmoid(x, scaling):
@@ -70,7 +64,6 @@ def sigmoid(x, scaling):
 
 def custom_round(num):
     return np.floor(num) + np.round(num - np.floor(num) + 1) - 1
-
 
 # Add Gaussian noise to image
 def add_noise(noise_typ,image,mean,var):
@@ -207,13 +200,13 @@ def draw_anterior_b(seglen, theta, gamma, phi, dh1, dh2, dimension, size_lut, ra
     head_c = np.matmul(R, head_c) + pt_original[:, 1, None]
     # Set brightness of eyes, belly and head
     # eyes_br = 235 * (randomize * normrnd(1, 0.1) + (1 - randomize) )
-    eyes_br = IntrinsicParameters.eye_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.eye_br_u()
+    eyes_br = (IntrinsicParameters.eye_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.eye_br_u()) * 1000
     # eyes_br = 255 * .55
     # belly_br = eyes_br * 0.83 * (randomize * normrnd(1, 0.1) + (1 - randomize))
-    belly_br = IntrinsicParameters.belly_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.belly_br_u()
+    belly_br = (IntrinsicParameters.belly_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.belly_br_u()) * 1000
     # belly_br = 255 * .42
     # head_br = belly_br * 0.64 * (randomize * normrnd(1, 0.1) + (1 - randomize))
-    head_br = IntrinsicParameters.head_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.head_br_u()
+    head_br = (IntrinsicParameters.head_br_distribution() * randomize + (1 - randomize) * IntrinsicParameters.head_br_u()) * 1000
 
     # head_br = 255 * .28
     # Generate random variables for scaling sizes of eyes, head and belly
@@ -255,14 +248,25 @@ def draw_anterior_b(seglen, theta, gamma, phi, dh1, dh2, dimension, size_lut, ra
     model_head = drawEllipsoid(canvas, head_c, head_l, head_w, head_h, head_br, theta, phi, gamma)
     # Project eyes, belly and head models on independent 2-D images
     project_eye1 = project(model_eye1, dimension)
-    project_eye1 = 2 * (sigmoid(project_eye1, 0.45) - 0.5) * eyes_br
+    #project_eye1 = 2 * (sigmoid(project_eye1, 0.45) - 0.5) * eyes_br
+    # The other version in calculate intrinsic variables
+    project_eye1 = 2 * (sigmoid(project_eye1, 0.5) - 0.7) * eyes_br
+
     project_eye2 = project(model_eye2, dimension)
-    project_eye2 = 2 * (sigmoid(project_eye2, 0.45) - 0.5) * eyes_br
+    #project_eye2 = 2 * (sigmoid(project_eye2, 0.45) - 0.5) * eyes_br
+    # The other version in calculate intrinsic variables
+    project_eye2 = 2 * (sigmoid(project_eye2, 0.5) - 0.7) * eyes_br
+
     project_belly = project(model_belly, dimension)
+    # project_belly = 2 * (sigmoid(project_belly, 0.3) - 0.5) * belly_br
+    # The other version in calculate intrinsic variables
     project_belly = 2 * (sigmoid(project_belly, 0.3) - 0.5) * belly_br
+
     project_head = project(model_head, dimension)
+    # project_head = 2 * (sigmoid(project_head, 0.4) - 0.5) * head_br
+    # The other version in calculate intrinsic variables
     project_head = 2 * (sigmoid(project_head, 0.4) - 0.5) * head_br
-    
+
     # Blend eyes, belly and head 2-D projections into one image
     projection = np.uint8(np.maximum(np.maximum(np.maximum(project_eye1, project_eye2), project_belly), project_head))
     return projection, eye1_c, eye2_c, model_eye1, model_eye2, model_head, model_belly
@@ -276,14 +280,19 @@ def gen_lut_b_tail(n, seglen, d1, d2, t, randomize):
 
     # Size of the balls in the ball and stick model
     random_number_size = randomize * normrnd(0.5, 0.1) + (1 - randomize) * 0.5
-    random_number_size *= (randomize * IntrinsicParameters.ball_thickness_distribution() + (1 - randomize) * IntrinsicParameters.ball_thickness_u())
-    ballsize = random_number_size * np.array([3, 2, 2, 2, 2, 1.5, 1.2, 1.2, 1])
+    # random_number_size *= (randomize * IntrinsicParameters.ball_thickness_distribution() + (1 - randomize) * IntrinsicParameters.ball_thickness_u())
+    # ballsize = random_number_size * np.array([3, 2, 2, 2, 2, 1.5, 1.2, 1.2, 1])
+    ballsize = (random_number_size * np.array([3, 2, 2, 2, 2, 1.5, 1.2, 1.2, 1]) * (randomize * IntrinsicParameters.ball_size_distribution() + (1 - randomize) * IntrinsicParameters.ball_size_u()))
+
     # ballsize *= .5
     # Thickness of the sticks in the model
-    thickness = random_number_size * np.array([7, 6, 5.5, 5, 4.5, 4, 3.5, 3])
+    # thickness = (random_number_size * np.array([7, 6, 5.5, 5, 4.5, 4, 3.5, 3]) )
+    thickness = (random_number_size * np.array([7, 6, 5.5, 5, 4.5, 4, 3.5, 3]) * (randomize * IntrinsicParameters.ball_thickness_distribution() + (1 - randomize) * IntrinsicParameters.ball_thickness_u()))
+
     # thickness *= .5
     # Brightness of the tail
-    b_tail = np.array([0.7, 0.55, 0.45, 0.40, 0.32, 0.28, 0.20, 0.15]) / 1.5
+    # b_tail = (np.array([0.7, 0.55, 0.45, 0.40, 0.32, 0.28, 0.20, 0.15]) / 1.5 )
+    b_tail = ((np.array([0.7, 0.55, 0.45, 0.40, 0.32, 0.28, 0.20, 0.15]) / 1.5) * (randomize * IntrinsicParameters.tail_brightness_distribution() + (1 - randomize) * IntrinsicParameters.tail_brightness_u()))
 
     imageSizeX = size_lut
     imageSizeY = size_lut

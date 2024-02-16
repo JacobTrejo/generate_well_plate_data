@@ -61,6 +61,11 @@ class IntrinsicParameters:
     head_w_u = lambda: 0.5077558460625518
     ball_thickness_distribution = lambda: np.random.normal(0.5861518680474747, 0.12086267623463233)
     ball_thickness_u = lambda: 0.5861518680474747
+    ball_size_distribution = lambda: np.random.normal(0.5127946718001636, 0.1055655304428576)
+    ball_size_u = lambda: 0.5127946718001636
+
+    tail_brightness_distribution = lambda: np.random.normal(1.0064504977497606, 0.010386653243516246)
+    tail_brightness_u = lambda: 1.0064504977497606
 
     seglen_distribution = lambda: 2 + np.random.rand()
     seglen_u = lambda: 2.5

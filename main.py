@@ -34,7 +34,7 @@ def create_and_save_data(frame_idx):
 
 def init_pool_process():
     np.random.seed()
-for idx in range(10):
+for idx in range(5):
     create_and_save_data(idx)
 
 # if __name__ == '__main__':

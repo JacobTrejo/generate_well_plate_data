@@ -1,0 +1,48 @@
+# Yaml file which controls the intrinsic parameters of the fish
+# NOTE: if you change a distribution make sure you also import the library in IntrinsicParameters.py
+
+# The new variables
+d_eye_distribution: np.random.normal(0.848341623974416 ,0.09549722775699268 )
+d_eye_u: 0.848341623974416
+c_eye_distribution: np.random.normal(1.7058500240221793 ,0.10588899244079517 )
+c_eye_u: 1.7058500240221793
+c_belly_distribution: np.random.normal(1.0815272808263487 ,0.16799475269241487 )
+c_belly_u: 1.0815272808263487
+c_head_distribution: np.random.normal(1.3516786182287277 ,0.16174994860919834 )
+c_head_u: 1.3516786182287277
+#eye_br_distribution: np.random.normal(0.3031255238836738 ,0.009569204555940871 )
+#eye_br_u: 0.3031255238836738
+#belly_br_distribution: np.random.normal(0.15215961514205165 ,0.007616258606638348 )
+#belly_br_u: 0.15215961514205165
+#head_br_distribution: np.random.normal(0.08987768639901683 ,0.014254666574661902 )
+#head_br_u: 0.08987768639901683
+
+#eye_w_distribution: np.random.normal(0.3961904152425266 ,0.015121026231446016 )
+##eye_w_u: 0.5061904152425266
+#eye_w_u: 0.3909238403150402
+
+eye_w_distribution: np.random.normal(0.4209238403150402, 0.040920763968052117)
+eye_w_u: 0.4209238403150402
+eye_l_distribution: np.random.normal(0.3844065772514719 ,0.03507670474931163 )
+#eye_l_u: 0.5144065772514719
+eye_l_u: 0.38
+
+belly_w_distribution: np.random.normal(0.4399572708604923 ,0.005363904133890723 )
+belly_w_u: 0.4399572708604923
+belly_l_distribution: np.random.normal(0.8692048085266663 ,0.01026119884730811 )
+belly_l_u: 0.8692048085266663
+head_w_distribution: np.random.normal(0.3155711134494867 ,0.008015285933272387 )
+head_w_u: 0.3155711134494867
+head_l_distribution: np.random.normal(0.713700736479039 ,0.010046765180453425 )
+head_l_u: 0.713700736479039
+#ball_size_distribution: np.random.normal(0.5127946718001636 ,0.1055655304428576 )
+#ball_size_u: 0.5127946718001636
+ball_thickness_distribution: np.random.normal(0.5861518680474747 ,0.12086267623463233 )
+ball_thickness_u: 0.5861518680474747
+#tail_brightness_distribution: np.random.normal(1.0064504977497606 ,0.010386653243516246 )
+#tail_brightness_u: 1.0064504977497606
+seglen_distribution: np.random.normal(3.906089250805046 ,0.2831176584059629 )
+seglen_u: 3.906089250805046
+
+
+
